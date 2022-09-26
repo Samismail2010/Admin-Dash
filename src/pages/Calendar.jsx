@@ -2,7 +2,7 @@ import React from 'react'
 
 const Calendar = () => {
   return (
-    <div>a</div>
+    <div></div>
   )
 }
 
