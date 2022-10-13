@@ -27,14 +27,46 @@ color, dotColor }) => (
         <span style={{ background: dotColor}}
         className='absolute inline-flex
         rounded-full h-2 w-2 right-2 top-2'
-        >
+        />
           {icon}
-        </span>
        </button>
   </TooltipComponent>
 )
 
-const {activeMenu, setActiveMenu, handleClick, isClicked, setIsClicked} = useStateContext();
+const {activeMenu, setActiveMenu, handleClick, isClicked, setIsClicked,
+screenSize, setScreenSize} = useStateContext();
+
+useEffect(() => {
+
+  // every time we resize the screen we set it to resize
+
+  const handleResize = () => setScreenSize
+  (window.innerWidth);
+
+  window.addEventListener('resize', handleResize);
+
+  // callback handleResize() just to figure out the initial width
+  handleResize();
+
+  // in react whenever we add an EventListener we also want to remove it as well
+  return () => window.removeEventListener
+  ('resize', handleResize);
+}, []);
+
+useEffect(() => {
+  // track the change of screen size
+
+  // if the screen size is less than 900px, menu tab is closed
+  // if the screen size is greater than 900px, menu will automatically appear
+
+  if(screenSize <= 900) {
+    setActiveMenu(false);
+  } else {
+    setActiveMenu(true)
+  }
+}, [screenSize]);
+
+
 
   return (
     <div className="flex justify-between p-2
