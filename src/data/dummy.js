@@ -661,7 +661,7 @@ export const recentTransactions = [
     desc: 'Money Added',
     iconColor: '#03C9D7',
     iconBg: '#E5FAFB',
-    pcColor: 'green-600',
+    pcColor: 'text-green-600',
   },
   {
     icon: <BsShield />,
